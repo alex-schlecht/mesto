@@ -1,0 +1,20 @@
+.profile__info {
+  box-sizing: border-box;
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(min-content, max-content)
+                         minmax(min-content, max-content);
+  gap: 16px 18px;
+  margin: 0 0 0 30px;
+  padding: 0;
+}
+
+@media screen and (max-width: 640px) {
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 10px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,16 @@
+.cards__remove {
+  position: absolute;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-image: url(../../../images/remove.svg);
+  min-width: 18px;
+  min-height: 19px;
+  transition: all 1s ease-in-out;
+  margin: 0;
+  padding: 0;
+}
+
+.cards__remove:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
