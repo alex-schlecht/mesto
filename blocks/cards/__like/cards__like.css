@@ -4,6 +4,7 @@
   background: center;
   background-image: url(../../../images/like.svg);
   transition: all 1s ease-in-out;
+  border: none;
   min-width: 22px;
   min-height: 19px;
   margin: 0 0 0 5px;

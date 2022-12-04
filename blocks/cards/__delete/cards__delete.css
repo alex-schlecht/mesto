@@ -1,8 +1,10 @@
-.cards__remove {
+.cards__delete {
   position: absolute;
+  transform: translate(244px, 20px);
   background-color: transparent;
   background-repeat: no-repeat;
   background-image: url(../../../images/remove.svg);
+  border: none;
   min-width: 18px;
   min-height: 19px;
   transition: all 1s ease-in-out;
@@ -10,7 +12,7 @@
   padding: 0;
 }
 
-.cards__remove:hover {
+.cards__delete:hover {
   opacity: 0.6;
   cursor: pointer;
 }

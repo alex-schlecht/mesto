@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
+  <link rel="stylesheet" href="./pages/index.css">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <meta name="description" content="Проектная работа - приложение Место">
+  <meta name="keywords" content="html, css, JS">
+  <meta name="Александр Грицаев" content="author">
   <title>Место</title>
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg">
+    <img class="header__logo" src="./images/logo.svg" alt="Логотип Место Россия">
   </header>
 
   <main>
     <section class="profile">
-      <img class="profile__avatar" src="./images/profile-avatar.png">
+      <img class="profile__avatar" src="./images/profile-avatar.png" alt="Аватарка профиля">
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h3>
-        <input class="profile__edit" type="button">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <input class="profile__edit" type="button" value="Редактировать">
         <p class="profile__description">Исследователь океана</p>
       </div>
-      <input class="profile__add-card" type="button">
+      <input class="profile__add-card" type="button" value="Создать">
     </section>
     <section class="cards"></section>
   </main>
@@ -32,7 +35,7 @@
   <div class="popup" id="profile-popup">
     <div class="popup__container">
       <button class="popup__close" type="button"></button>
-      <h3 class="popup__title">Редактировать профиль</h3>
+      <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form">
         <label>
           <input class="popup__input popup__input_name" type="text" value="Жак-Ив Кусто" required placeholder="Ваше имя">
@@ -40,30 +43,38 @@
         <label>
           <input class="popup__input popup__input_description" type="text" value="Исследователь океана" required placeholder="Род занятий">
         </label>
+        <button class="popup__submit-profile" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
   <div class="popup" id="new-card-popup">
     <div class="popup__container">
       <button class="popup__close" type="button"></button>
-      <h3 class="popup__title">Новое место</h3>
+      <h2 class="popup__title">Новое место</h2>
       <form class="popup__form">
         <label>
-          <input class="popup__input popup__input_name" type="text" value="Жак-Ив Кусто" required placeholder="Название места">
+          <input class="popup__input popup__input_card-name" type="text" required placeholder="Название места">
         </label>
         <label>
-          <input class="popup__input popup__input_description" type="text" value="Исследователь океана" required placeholder="Ссылка на фото">
+          <input class="popup__input popup__input_card-link" type="text" required placeholder="Ссылка на фото">
         </label>
-        <button class="popup__submit" type="submit">Создать</button>
-        </form>
+        <button class="popup__submit-mesto" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_surround" id="full-size-image-popup">
+    <div class="popup__full-size-image">
+      <button class="popup__close" type="button"></button>
+      <img class="popup__image" src="#" alt="Фотография места">
+      <p class="popup__image-name"></p>
     </div>
   </div>
   <template id="initial-cards">
     <div class="cards__item">
-      <button class="cards__remove" type="button"></button>
+      <button class="cards__delete" type="button"></button>
       <img class="cards__image" src="#" alt="Фотография места">
-      <div class="cards__info">
-        <h2 class="cards__description"></h2>
+      <div class="cards__bar">
+        <h3 class="cards__name"></h3>
         <button class="cards__like" type="button"></button>
       </div>
     </div>
