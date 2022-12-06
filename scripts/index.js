@@ -17,20 +17,19 @@ const cardContainer = document.querySelector('.cards');
 const imagePopup = document.querySelector('#full-size-image-popup');
 const openedImage = document.querySelector('.popup__image');
 const imageName = document.querySelector('.popup__image-name');
+const profileFormSubmit = document.querySelector('.popup__form_profile');
+const cardFormSubmit = document.querySelector('.popup__form_card');
 //Открыть попап
 const openPopup = function(popupType) {
   popupType.classList.add('popup_opened');
-  const closeBtn = popupType.getElementsByClassName('popup__close')[0];
-  closeBtn.addEventListener('click', () => closePopup(popupType));
 }
 //Закрыть попап
 const closePopup = function(popupType) {
-  popupType.classList.remove('popup_opened')
+  popupType.classList.remove('popup_opened');
 }
 //Редактирование профиля
 const openProfilePopup = function() {
   profileName.textContent = inputName.value;
-  console.log(profileName.textContent);
   profileDescription.textContent = inputDescription.value;
   openPopup(profilePopup);
 }
@@ -79,11 +78,16 @@ const renderCard = () => {
   });
 }
 renderCard();
+//Закрытие попапа на крестик
+closePopupButton.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
 //Обработчик открытия профиля
 profileEdit.addEventListener('click', openProfilePopup);
 //Обработчик для создания карточки
 newCard.addEventListener('click', openCardPopup);
 //Обработчик сохрарения профиля
-submitProfileButton.addEventListener('click', profileSubmit);
+profileFormSubmit.addEventListener('submit', profileSubmit);
 //Обработчик сохранения карточки
-submitCardButton.addEventListener('click', cardSubmit);
+cardFormSubmit.addEventListener('submit', cardSubmit);
