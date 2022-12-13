@@ -29,8 +29,8 @@ const closePopup = function(popupType) {
 }
 //Редактирование профиля
 const openProfilePopup = function() {
-  profileName.textContent = inputName.value;
-  profileDescription.textContent = inputDescription.value;
+  inputName.value = profileName.textContent;
+  inputDescription.value = profileDescription.textContent;
   openPopup(profilePopup);
 }
 //Сохранение профиля
