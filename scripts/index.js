@@ -19,6 +19,8 @@ const openedImage = document.querySelector('.popup__image');
 const imageName = document.querySelector('.popup__image-name');
 const profileFormSubmit = document.querySelector('.popup__form_profile');
 const cardFormSubmit = document.querySelector('.popup__form_card');
+
+
 //Открыть попап
 const openPopup = function(popupType) {
   popupType.classList.add('popup_opened');
