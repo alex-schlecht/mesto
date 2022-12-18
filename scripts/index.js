@@ -19,15 +19,24 @@ const openedImage = document.querySelector('.popup__image');
 const imageName = document.querySelector('.popup__image-name');
 const profileFormSubmit = document.querySelector('.popup__form_profile');
 const cardFormSubmit = document.querySelector('.popup__form_card');
+const popups = document.querySelectorAll('.popup');
 
-
+const keyCheck = (event) => {
+  if(event.key === 'Escape') {
+    const popupClose = document.querySelector('.popup_opened');
+    closePopup(popupClose);
+  }
+}
 //Открыть попап
 const openPopup = function(popupType) {
+  document.addEventListener('keydown', keyCheck);
   popupType.classList.add('popup_opened');
+
 }
 //Закрыть попап
 const closePopup = function(popupType) {
   popupType.classList.remove('popup_opened');
+  document.removeEventListener('keydown', keyCheck);
 }
 //Редактирование профиля
 const openProfilePopup = function() {
@@ -84,6 +93,15 @@ renderCard();
 closePopupButton.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
+});
+// Закрытие попапа на клик вне области попапа
+popups.forEach((popupType) => {
+  popupType.addEventListener('click', (event) => {
+    if(event.target !== event.currentTarget) {
+      return;
+    }
+    closePopup(popupType);
+  });
 });
 //Обработчик открытия профиля
 profileEdit.addEventListener('click', openProfilePopup);

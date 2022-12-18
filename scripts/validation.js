@@ -1,61 +1,59 @@
-const inputElement = document.querySelectorAll('.popup__input');
-const form = document.forms;
-
-// Показ ошибки
-const isFormValid = (formInput, formSpan, validation) => {
-  const errorElement = document.querySelector(`#${formInput.id}`);
-  const errorSpan = document.querySelector('.popup__error_visible');
-  console.log ('errorElement', errorElement);
-  if(formInput.validity.valid) {
-    errorSpan.textContent = '';
-    formSpan.classList.remove(validation.errorClass);
-    formInput.classList.remove(validation.inputErrorClass);
+// Показать ошибки
+const inputErrorShow = (form, input, error, errorClass, inputErrorClass) => {
+  const inputError = form.querySelector(`#${input.id}-error`);
+  input.classList.add(inputErrorClass);
+  inputError.classList.add(errorClass);
+  inputError.textContent = error;
+}
+// Скрыть ошибки
+const inputErrorHide = (form, input, errorClass, inputErrorClass) => {
+  const inputError = form.querySelector(`#${input.id}-error`);
+  input.classList.remove(inputErrorClass);
+  inputError.classList.remove(errorClass);
+  inputError.textContent = '';
+}
+//Проверить форму
+const isFormValid = (form, input, validation) => {
+  if(!input.validity.valid) {
+    inputErrorShow(form, input, input.validationMessage, validation.errorClass, validation.inputErrorClass);
   } else {
-    formInput.validationMessage = errorSpan.textContent;
-    formSpan.classList.add(validation.errorClass);
-    formInput.classList.add(validation.inputErrorClass);
+    inputErrorHide(form, input, validation.errorClass, validation.inputErrorClass);
   }
 }
-//Тоггл самбита
-const toggleSubmitButton = (input, submit) => {
-  const submitForm = document.querySelector(`#${submit.id}`);
-  if(input.validity.valid) {
-    submitForm.removeAttribute('disabled');
-    submitForm.classList.remove(validation.inactiveButtonClass);
+// Форма не прошла проверку
+const inputInvalid = (formInputs) => {return formInputs.some((input) => !input.validity.valid)}
+//Переключение кнопки
+const toggleSubmitButton = (formInputs, submit, inactiveButtonClass) => {
+  if (inputInvalid(formInputs)) {
+    submit.disabled = true;
+    submit.classList.add(inactiveButtonClass);
   } else {
-    submitForm.removeAttribute('disabled', true);
-    submitForm.classList.add(validation.inactiveButtonClass);
+    submit.disabled = false;
+    submit.classList.remove(inactiveButtonClass);
   }
 }
+//Основная функция
 const enableValidation = (validation) => {
-  const {formSelector, inputSelector, submitButtonSelector} = validation;
-  const forms = document.querySelectorAll(formSelector);
-
-  forms.forEach(form => {
-    const formGroup = form.querySelectorAll('.form-group');
-    console.log(validation.errorClass);
-    const formButton = form.querySelector(validation.submitButtonSelector);
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-    });
-    
-    formGroup.forEach(input => {
+  const forms = document.querySelectorAll(validation.formSelector);
+  forms.forEach((form) => {
+    const formInputs = [...form.querySelectorAll(validation.inputSelector)];
+    const submit = form.querySelector(validation.submitButtonSelector);
+    formInputs.forEach((input) => {
       input.addEventListener('input', () => {
-        const formSpan = form.querySelector(validation.errorClass);
-        const formInput = form.querySelector(validation.inputSelector);
-        isFormValid(formInput, formSpan, validation);
-        toggleSubmitButton(formInput, formButton);
+        toggleSubmitButton(formInputs, submit, validation.inactiveButtonClass);
+        isFormValid(form, input, validation);
       });
     });
   });
 }
-// свойства
-const validation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
+// Сброс формы
+const resetForm = (popupForm) => {
+  const form = popupForm.querySelector(validation.formSelector);
+  const formInputs = [...form.querySelectorAll(validation.inputSelector)];
+  const button = form.querySelector(validation.submitButtonSelector);
+  formInputs.forEach((input) => {
+    inputErrorHide(form, input, validation.inputErrorClass, validation.errorClass);
+    toggleSubmitButton(formInputs, button, validation.inactiveButtonClass);
+  });
+}
 enableValidation(validation);
