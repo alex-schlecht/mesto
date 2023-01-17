@@ -25,7 +25,9 @@
       </div>
       <input class="profile__add-card" type="button" value="Создать">
     </section>
-    <section class="cards"></section>
+    <section class="cards">
+      <ul class="cards__items"></ul>
+    </section>
   </main>
 
     <footer class="footer">
@@ -59,11 +61,11 @@
     </div>
   </div>
   <div class="popup popup_surround" id="full-size-image-popup">
-    <div class="popup__full-size-image">
+    <figure class="popup__full-size-image">
       <button class="popup__close" type="button"></button>
       <img class="popup__image" src="#" alt="Фотография места">
-      <p class="popup__image-name"></p>
-    </div>
+      <figcaption class="popup__image-name"></figcaption>
+    </figure>
   </div>
   <template id="initial-cards">
     <div class="cards__item">
@@ -78,3 +80,12 @@
   <script type="module" src="scripts/index.js"></script>
 </body>
 </html>
+<!--По-поводу Вашего комментария о появлении трёх строк ошибки готов не согласиться, 
+  насколько я вижу, чеклист ПР 6 гласит:
+  появление сообщения об ошибке в одну или две строки высотой не должно приводить к изменению
+  высоты модального окна. Если сообщение об ошибке от трёх строк высотой, то размер модального окна
+  увеличивается.
+  В последующих ПР требования чтобы высота модального окна не менялась нет.
+  Я могу поменять размеры шрифтов или добавить паддинги, по идее это должно помочь, однако пойдет в разрез 
+  с макетом, что недопустимо. Кастомные тексты ошибок также писать не требовалось, это также могло бы помочь.
+-->

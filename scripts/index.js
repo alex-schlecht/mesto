@@ -14,10 +14,11 @@ const inputName = document.querySelector('.popup__input_name');
 const inputDescription = document.querySelector('.popup__input_description');
 const inputCardName = document.querySelector('.popup__input_card-name');
 const inputCardLink = document.querySelector('.popup__input_card-link');
-const cardContainer = document.querySelector('.cards');
+const cardContainer = document.querySelector('.cards__items');
 const popupFormProfile = document.querySelector('.popup__form_profile');
 const popupFormCard = document.querySelector('.popup__form_card');
 const popups = document.querySelectorAll('.popup');
+const popupImageFullSize = document.querySelector('.popup_surround');
 
 const checkKey = (event) => {
   if(event.key === 'Escape') {
@@ -52,7 +53,7 @@ const submitProfile = function(event) {
 //Сохранение карточки
 const submitCard = function(event) {
   event.preventDefault();
-  cardContainer.prepend(addCard(inputCardLink.value, inputCardName.value));
+  cardContainer.prepend(addCard(inputCardName.value, inputCardLink.value));
   closePopup(newCardPopup);
 }
 //Добавление экземпляра карточки
@@ -87,7 +88,7 @@ profileEdit.addEventListener('click', openProfilePopup);
 //Обработчик для создания карточки
 newCard.addEventListener('click', () => {
   popupFormCard.reset();
-  formValidatorCards;
+  formValidatorCards.resetForm();
   openPopup(newCardPopup);
 });
 //Обработчик сохрарения профиля
@@ -95,4 +96,4 @@ popupFormProfile.addEventListener('submit', submitProfile);
 //Обработчик сохранения карточки
 popupFormCard.addEventListener('submit', submitCard);
 
-export {openPopup}
+export {openPopup, popupImageFullSize}
