@@ -1,4 +1,4 @@
-import {openPopup, popupImageFullSize} from "./index.js";
+import {openPopup,  popupImageFullSize, popupImageFullSizeImageName, popupImageFullSizeImageOfCard} from "./index.js";
 
 class Card {
   constructor(configData, templateSelector) {
@@ -15,16 +15,15 @@ class Card {
   }
   _clickDeleteCard() {
     this._element.remove();
-    this.element = null;
+    this._element = null;
   }
   _clickLikeCard() {
     this._likeButton.classList.toggle('cards__like_active');
   }
   _clickImageFullSize() {
-    popupImageFullSize.querySelector('.popup__image-name').textContent = this._name;
-    const imageOfCard = popupImageFullSize.querySelector('.popup__image');
-    imageOfCard.src = this._src;
-    imageOfCard.alt = this._name;
+    popupImageFullSizeImageName.textContent = this._name;
+    popupImageFullSizeImageOfCard.src = this._src;
+    popupImageFullSizeImageOfCard.alt = this._name;
     openPopup(popupImageFullSize);
   }
   _setEventListeners() {

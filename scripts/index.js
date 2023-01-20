@@ -19,6 +19,10 @@ const popupFormProfile = document.querySelector('.popup__form_profile');
 const popupFormCard = document.querySelector('.popup__form_card');
 const popups = document.querySelectorAll('.popup');
 const popupImageFullSize = document.querySelector('.popup_surround');
+const popupImageFullSizeImageName = popupImageFullSize.querySelector('.popup__image-name');
+const popupImageFullSizeImageOfCard = popupImageFullSize.querySelector('.popup__image');
+
+
 
 const checkKey = (event) => {
   if(event.key === 'Escape') {
@@ -96,4 +100,4 @@ popupFormProfile.addEventListener('submit', submitProfile);
 //Обработчик сохранения карточки
 popupFormCard.addEventListener('submit', submitCard);
 
-export {openPopup, popupImageFullSize}
+export {openPopup, popupImageFullSize, popupImageFullSizeImageName, popupImageFullSizeImageOfCard}
