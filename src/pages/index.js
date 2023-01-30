@@ -33,10 +33,12 @@ const formValidatorProfile = new FormValidator(validation, popupFormProfile);
 
 //Card popup
 const popupWithImage = new PopupWithImage(popupImageFullSize);
-//Добавление экземпляра карточки
+//Создание карточки
 const addCard = function(name, src) {
   return new Card({name, src, handleCardClick: () => popupWithImage.open(name, src)}, '#initial-cards').generateCard();
 };
+
+//Добавление карточек из массива
 const cards = new Section({items: initialCards, renderer: (card) => {
       const newCard = addCard(card.name, card.link);
       cards.addItem(newCard);
@@ -47,8 +49,8 @@ const cards = new Section({items: initialCards, renderer: (card) => {
 //Форма добавления карточки
 const cardForm = new PopupWithForm ({
   submitForm: (input) => {
-    const card = addCard(input['img-name'], input['img-src']);
-    cards.addCard(card);
+    const card = addCard(input['name'], input['src']);
+    cards.addItem(card);
   },
 }, newCardPopup);
 cards.renderElement();
