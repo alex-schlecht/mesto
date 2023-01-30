@@ -1,10 +1,9 @@
-import {openPopup,  popupImageFullSize, popupImageFullSizeImageName, popupImageFullSizeImageOfCard} from "./index.js";
-
 class Card {
-  constructor(configData, templateSelector) {
-    this._name = configData.name;
-    this._src = configData.link;
-    this._templateSelector = templateSelector
+  constructor({name, src, handleCardClick}, templateSelector) {
+    this._name = name;
+    this._src = src;
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     return document
@@ -20,16 +19,10 @@ class Card {
   _clickLikeCard() {
     this._likeButton.classList.toggle('cards__like_active');
   }
-  _clickImageFullSize() {
-    popupImageFullSizeImageName.textContent = this._name;
-    popupImageFullSizeImageOfCard.src = this._src;
-    popupImageFullSizeImageOfCard.alt = this._name;
-    openPopup(popupImageFullSize);
-  }
   _setEventListeners() {
     this._element.querySelector('.cards__delete').addEventListener('click', () => this._clickDeleteCard());
     this._element.querySelector('.cards__like').addEventListener('click', () => this._clickLikeCard());
-    this._imageOfCard.addEventListener('click', () => this._clickImageFullSize(this._imageOfCard));
+    this._imageOfCard.addEventListener('click', () => this._handleCardClick());
   }
   generateCard() {
     this._element = this._getTemplate();
