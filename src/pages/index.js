@@ -22,10 +22,11 @@ import Section from '../components/Section.js';
 import UserInfo from "../components/UserInfo.js";
 
 //Название, описание профиля
-const userInfo = new UserInfo({profileName: inputName, profileDescription: inputDescription});
+const userInfo = new UserInfo('.profile__name', '.profile__description');
+
 //Profile popup
 const profileForm =  new PopupWithForm ({
-  submitForm: (input) => userInfo.setUserInfo(input['name'], input['description']), 
+  submitForm: (inputValues) => userInfo.setUserInfo(inputValues['name'.name], inputValues['description'.name]),
   }, profilePopup);
 profileForm.setEventListeners();
 //Валидация Профиль
@@ -34,13 +35,13 @@ const formValidatorProfile = new FormValidator(validation, popupFormProfile);
 //Card popup
 const popupWithImage = new PopupWithImage(popupImageFullSize);
 //Создание карточки
-const addCard = function(name, src) {
+const createCard = function(name, src) {
   return new Card({name, src, handleCardClick: () => popupWithImage.open(name, src)}, '#initial-cards').generateCard();
 };
 
 //Добавление карточек из массива
 const cards = new Section({items: initialCards, renderer: (card) => {
-      const newCard = addCard(card.name, card.link);
+      const newCard = createCard(card.name, card.link);
       cards.addItem(newCard);
     },
   },
@@ -48,16 +49,16 @@ const cards = new Section({items: initialCards, renderer: (card) => {
 );
 //Форма добавления карточки
 const cardForm = new PopupWithForm ({
-  submitForm: (input) => {
-    const card = addCard(input['name'], input['src']);
+  submitForm: (inputValues) => {
+    const card = createCard(inputValues['name'.name], inputValues['src'.name]);
     cards.addItem(card);
   },
 }, newCardPopup);
-cards.renderElement();
+cards.renderElements();
 //Валидация Карточка
 const formValidatorCards = new FormValidator(validation, popupFormCard);
 //Сброс формы при открытии
-const handleProfileButton = () => {
+const handleProfileOpenButton = () => {
   const {name, description} = userInfo.getUserInfo();
   inputName.value = name;
   inputDescription.value = description;
@@ -70,7 +71,7 @@ newCard.addEventListener('click', () => {
 })
 
 cardForm.setEventListeners();
-profileEdit.addEventListener('click', handleProfileButton);
+profileEdit.addEventListener('click', handleProfileOpenButton);
 popupWithImage.setEventListeners();
 formValidatorProfile.enableValidation();
 formValidatorCards.enableValidation();
