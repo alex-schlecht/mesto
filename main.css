@@ -658,13 +658,21 @@ template {
   background-color: transparent;
   background-repeat: no-repeat;
   background: center;
-  background-image: url(fe17a515669479b1e649.svg);
+  background-image: url(4f5e35d0e4ad8d4f280a.svg);
   transition: all 1s ease-out;
 }
 
 .cards__like_active:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+.cards__like-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-right: 20px;
+  padding: 0;
 }
 .footer {
   max-width: 880px;
