@@ -888,5 +888,8 @@ template {
   margin: 0;
   padding: 0;
 }
+.popup__submit-confirm {
+  margin-top: 20px;
+}
 
 
