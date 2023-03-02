@@ -571,7 +571,7 @@ template {
 @media screen and (max-width: 640px) {
   .cards {
     max-width: 282px;
-    margin: 0 auto 48px auto;
+    margin: 50px auto 48px auto;
   }
 }
 .cards__item {
