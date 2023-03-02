@@ -901,6 +901,7 @@ template {
   width: 120px;
   height: 120px;
   transition: .6s linear;
+  padding: 0;
 }
 
 .profile__edit-avatar:hover {
