@@ -900,6 +900,8 @@ template {
   top: 0;
   left: 0;
   opacity: 0;
+  width: 120px;
+  height: 120px;
   transition: .6s linear;
 }
 
