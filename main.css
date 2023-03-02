@@ -894,9 +894,6 @@ template {
   background-size: 26px;
   background-color: rgba(0, 0, 0, 0.8);
   border: none;
-  position: absolute;
-  top: 0;
-  left: 0;
   opacity: 0;
   width: 120px;
   height: 120px;
