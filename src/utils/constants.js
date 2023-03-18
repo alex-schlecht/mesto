@@ -1,30 +1,3 @@
-export const initialCards = [
-  {
-    name: 'Архыз', 
-    link: new URL('../images/cards/arkhyz.jpg', import.meta.url)
-  },
-  {
-    name: 'Челябинская область', 
-    link: new URL('../images/cards/chelyabinsk-oblast.jpg', import.meta.url)
-  },
-  {
-    name: 'Иваново', 
-    link: new URL('../images/cards/ivanovo.jpg', import.meta.url)
-  },
-  {
-    name: 'Камчатка', 
-    link: new URL('../images/cards/kamchatka.jpg', import.meta.url)
-  },
-  {
-    name: 'Холмогорский район', 
-    link: new URL('../images/cards/kholmogorsky-rayon.jpg', import.meta.url)
-  },
-  {
-    name: 'Байкал', 
-    link: new URL('../images/cards/baikal.jpg', import.meta.url)
-  },
-]
-
 export const validation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -46,3 +19,10 @@ export const cardContainer = document.querySelector('.cards__items');
 export const popupFormProfile = document.querySelector('.popup__form_profile');
 export const popupFormCard = document.querySelector('.popup__form_card');
 export const popupImageFullSize = document.querySelector('.popup_surround');
+export const popupProfileAvatarForm = document.querySelector('.popup__form_avatar');
+export const popupProfileAvatar = document.querySelector('#profile-avatar-popup');
+export const popupConfirm = document.querySelector('#confirm-popup');
+export const newAvatar = document.querySelector('.profile__edit-avatar');
+
+export const apiUrl = "https://mesto.nomoreparties.co/v1/cohort-60";
+export const apiToken = "fb254d0d-24c1-470a-bc0c-68d2d2e3fa16";
