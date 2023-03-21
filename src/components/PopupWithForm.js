@@ -7,7 +7,6 @@ class PopupWithForm extends Popup{
     this._form = this._popup.querySelector('.popup__form');
     this._formInputs = this._form.querySelectorAll('.popup__input');
     this._button = this._form.querySelector(`#${this._form.id}-submit`);
-    this.checkButtonState();
   }
   _getInputValues() {
     const inputValue = {};
@@ -23,16 +22,14 @@ class PopupWithForm extends Popup{
     super.setEventListeners();
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
+      const oldButtonText = this._button.textContent;
+      this._button.textContent = "Сохранение...";
       this._inputValues = this._getInputValues();
+      this._submitForm(this._formInputs);
+      this._button.textContent = oldButtonText;
     })
   }
-  checkButtonState() {
-    if(this._submitForm) {
-      this._button.addEventListener('click', () => {
-        this._submitForm(this._formInputs);
-      })
-    }
-  }
+  
   close() {
     super.close();
     this._form.reset();

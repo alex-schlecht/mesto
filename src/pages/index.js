@@ -58,21 +58,16 @@ Promise.all([api.getUserInfo(), api.getCards()])
   userInfo.setUserAvatar(avatar);
   cards.renderElements(card.reverse());
 })
+.catch((error) => console.log(error))
 
 //Profile popup
 const profileFormPopup =  new PopupWithForm ({
   submitForm: (inputValues) => {
-    const buttonText = profileFormPopup._button.textContent;
-    profileFormPopup._button.textContent = "Сохранение...";
     const profileName = inputValues[0].value;
     const profileAbout = inputValues[1].value;
     api.patchUserInfo(profileName, profileAbout)
-      .then(() => userInfo.setUserInfo(profileName, profileAbout))
+      .then(() => userInfo.setUserInfo(profileName, profileAbout), profileFormPopup.close())
       .catch((error) => console.log(error))
-      .finally(() => {
-        profileFormPopup.close();
-        profileFormPopup._button.textContent = buttonText;
-      })
   },
 }, '#profile-popup');
 profileFormPopup.setEventListeners();
@@ -109,7 +104,7 @@ const createCard = function(id, name, src, likes, ownerId, userId) {
     }, handleCardClickDelete: (card) => {
       confirmPopup.handleSubmitButton(() => {
         api.deleteCard(card._id)
-          .then(() => card.clickDeleteCard())
+          .then(() => card.clickDeleteCard(), confirmPopup.close())
           .catch((error) => console.log(error))
       })
       confirmPopup.open();
@@ -120,20 +115,15 @@ const createCard = function(id, name, src, likes, ownerId, userId) {
 //Форма добавления карточки
 const cardFormPopup = new PopupWithForm ({
   submitForm: (inputValues) => {
-    const buttonText = profileFormPopup._button.textContent;
-    cardFormPopup._button.textContent = "Сохранение...";
     const cardName = inputValues[0].value;
     const cardLink = inputValues[1].value;
     api.postCard(cardName, cardLink)
       .then((res) => {
         const card = createCard(res._id, res.name, res.link, res.likes, res.owner._id, userInfo.getUserInfo().id);
         cards.addItem(card);
+        cardFormPopup.close();
       })
       .catch((error) => console.log(error))
-      .finally(() => {
-        cardFormPopup.close();
-        cardFormPopup._button.textContent = buttonText;
-      })
   },
 }, '#new-card-popup');
 cardFormPopup.setEventListeners();
@@ -146,16 +136,10 @@ newCard.addEventListener('click', () => {
 //Форма редактирования аватара
 const avatarFormPopup = new PopupWithForm({
   submitForm: (inputValues) => {
-    const buttonText = avatarFormPopup._button.textContent;
-    avatarFormPopup._button.textContent = "Сохранение...";
     const profileAvatar = inputValues[0].value;
     api.patchAvatar(profileAvatar)
-      .then(() => userInfo.setUserAvatar(profileAvatar))
+      .then(() => userInfo.setUserAvatar(profileAvatar), avatarFormPopup.close())
       .catch((error) => console.log(error))
-      .finally(() => {
-        avatarFormPopup.close();
-        avatarFormPopup._button.textContent = buttonText;
-      })
   },
 }, '#profile-avatar-popup');
 avatarFormPopup.setEventListeners();

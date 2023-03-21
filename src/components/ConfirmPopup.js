@@ -11,11 +11,9 @@ class ConfirmPopup extends Popup {
     this._submitButton.addEventListener('click', (event) => {
       event.preventDefault();
       this._handleSubmitButton();
-      this.close();
     })
   }
   handleSubmitButton(handleSubmitButton) {
-    console.log(123);
     this._handleSubmitButton = handleSubmitButton;
   }
 }
