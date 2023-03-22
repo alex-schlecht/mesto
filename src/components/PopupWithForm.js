@@ -25,6 +25,7 @@ class PopupWithForm extends Popup{
       const oldButtonText = this._button.textContent;
       this._button.textContent = "Сохранение...";
       this._inputValues = this._getInputValues();
+      debugger;
       this._submitForm(this._formInputs);
       this._button.textContent = oldButtonText;
     })
