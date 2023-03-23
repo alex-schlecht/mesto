@@ -7,8 +7,8 @@ export default class Api {
   _checkResponse(res) {
     return(res.ok) ? res.json() : Promise.reject(`Ошибка! => ${res.status}`);
   }
-  _request(url, config) {
-    return fetch(`${this._apiMainUrl}${url}`, config)
+  async _request(url, config) {
+    return await fetch(`${this._apiMainUrl}${url}`, config)
       .then((res) => this._checkResponse(res))
   }
   getCards() {
