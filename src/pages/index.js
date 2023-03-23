@@ -163,7 +163,7 @@ newAvatar.addEventListener('click', () => {
   avatarFormPopup.open();
 })
 profileEdit.addEventListener('click', handleProfileOpenButton);
-popupWithImage.setEventListeners();
+
 formValidatorAvatar.enableValidation();
 formValidatorProfile.enableValidation();
 formValidatorCards.enableValidation();
