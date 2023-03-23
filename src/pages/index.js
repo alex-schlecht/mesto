@@ -10,7 +10,6 @@ import {
   popupFormCard,
   validation,
   popupProfileAvatarForm,
-  popupProfileAvatar,
   newAvatar
 } from '../utils/constants.js';
 import Api from '../components/Api';
