@@ -67,6 +67,7 @@ const profileFormPopup =  new PopupWithForm ({
     api.patchUserInfo(profileName, profileAbout)
       .then(() => userInfo.setUserInfo(profileName, profileAbout), profileFormPopup.close())
       .catch((error) => console.log(error))
+      .finally(() => profileFormPopup.renderLoading('Сохранить'))
   },
 }, '#profile-popup');
 profileFormPopup.setEventListeners();
@@ -123,6 +124,7 @@ const cardFormPopup = new PopupWithForm ({
         cardFormPopup.close();
       })
       .catch((error) => console.log(error))
+      .finally(() => cardFormPopup.renderLoading('Создать'))
   },
 }, '#new-card-popup');
 cardFormPopup.setEventListeners();
@@ -139,6 +141,7 @@ const avatarFormPopup = new PopupWithForm({
     api.patchAvatar(profileAvatar)
       .then(() => userInfo.setUserAvatar(profileAvatar), avatarFormPopup.close())
       .catch((error) => console.log(error))
+      .finally(() => avatarFormPopup.renderLoading('Сохранить'))
   },
 }, '#profile-avatar-popup');
 avatarFormPopup.setEventListeners();

@@ -18,8 +18,8 @@ class PopupWithForm extends Popup{
       input.value = inputValues[input.name]
     })
   }
-  renderLoading() {
-    this._button.textContent = "Сохранение...";
+  renderLoading(text) {
+    this._button.textContent = text;
   }
   setEventListeners() {
     super.setEventListeners();
@@ -27,14 +27,13 @@ class PopupWithForm extends Popup{
       event.preventDefault();
       this._inputValues = this._getInputValues();
       this._submitForm(this._formInputs);
-      this.renderLoading();
+      this.renderLoading('Сохранение...');
     })
   }
   
   close() {
     super.close();
     this._form.reset();
-    this._button.textContent = "Создать";
   }
 }
 export default PopupWithForm
